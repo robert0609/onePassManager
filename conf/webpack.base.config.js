@@ -81,7 +81,7 @@ module.exports = {
 		path: path.resolve(__dirname, '../dist'),
 		filename: 'static/js/[name]-[chunkhash:7].js',
 		chunkFilename: 'static/js/[id].[chunkhash:7].js',
-		publicPath: '/dist/'
+		publicPath: '/'
 	},
 	devtool: 'source-map',
 	resolve: {
