@@ -3,7 +3,7 @@ var path = require('path');
 var webpack = require('webpack');
 var rm = require('rimraf');
 
-rm(path.resolve(__dirname, '../dist'), function (err) {
+rm(path.resolve(__dirname, '../../onePass/app/src/main/assets/content'), function (err) {
 	if (err) {
 		throw err;
 	}

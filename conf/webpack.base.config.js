@@ -78,7 +78,7 @@ module.exports = {
 		app: __path_src()
 	},
 	output: {
-		path: path.resolve(__dirname, '../dist'),
+		path: path.resolve(__dirname, '../../onePass/app/src/main/assets/content'),
 		filename: 'static/js/[name]-[chunkhash:7].js',
 		chunkFilename: 'static/js/[id].[chunkhash:7].js',
 		publicPath: '/'
