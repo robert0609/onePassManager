@@ -4,7 +4,12 @@
 import 'babel-polyfill';
 import Vue from 'vue';
 import router from './router';
+import './validate';
 import app from './app.vue';
+import vpcui from 'v-pc-ui';
+import 'v-pc-ui/dist/vpcui.min.css';
+
+Vue.use(vpcui);
 
 Vue.config.productionTip = false;
 /* eslint-disable no-undef */

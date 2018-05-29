@@ -6,6 +6,7 @@ var rm = require('rimraf');
 var opn = require('opn');
 var webpackMiddleware = require("webpack-dev-middleware");
 var webpackHotMiddleware = require('webpack-hot-middleware');
+var proxyMiddleware = require('http-proxy-middleware');
 
 rm(path.resolve(__dirname, '../dist'), function (err) {
 	if (err) {
@@ -16,6 +17,11 @@ rm(path.resolve(__dirname, '../dist'), function (err) {
 	var url = 'http://localhost:' + port;
 
 	var app = express();
+  // proxy webapi request to mobile
+  app.use('/webapi', proxyMiddleware('/webapi', {
+    target: 'http://192.168.10.96:18888',
+    changeOrigin: true
+  }));
   // handle fallback for HTML5 history API
   app.use(require('connect-history-api-fallback')());
 

@@ -10,6 +10,11 @@ const routes = [
     component: () =>
       import('../pages/home/home.vue')
   }, {
+    name: 'editSite',
+    path: '/site/edit',
+    component: () =>
+      import('../pages/editSite/editSite.vue')
+  }, {
     name: 'error',
     path: '/error',
     component: () =>

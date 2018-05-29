@@ -11,6 +11,10 @@ function __path_test() {
 	return path.resolve(__dirname, '../test/unit');
 }
 
+function resolve(dir) {
+  return path.join(__dirname, '..', dir)
+}
+
 function __cssLoaders() {
 	if (process.env.NODE_ENV === 'production') {
 		return ExtractTextPlugin.extract({
@@ -156,7 +160,8 @@ module.exports = {
 					test: /\.css$/,
 					include: [
 						__path_src(),
-						__path_test()
+						__path_test(),
+            resolve('node_modules/v-pc-ui'),
 					]
 				},
 				use: __cssLoaders()
