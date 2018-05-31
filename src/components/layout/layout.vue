@@ -1,15 +1,21 @@
 <template>
-  <div>
-    <div>
-      <ul>
-        <li><router-link :to="{ name: 'home' }">Home</router-link></li>
-        <li v-for="lvl in levels" :key="lvl"><router-link :to="{ name: 'list', query: { level: lvl } }">Level-{{lvl}}</router-link></li>
-        <li><a href="/backup.db">Backup</a></li>
-      </ul>
+  <div class="page">
+    <header>
+      <h1>One Passord</h1>
+    </header>
+    <div class="body">
+      <div class="menu">
+        <ul>
+          <li><router-link :to="{ name: 'home' }">Home</router-link></li>
+          <li v-for="lvl in levels" :key="lvl"><router-link :to="{ name: 'list', query: { level: lvl } }">Level-{{lvl}}</router-link></li>
+          <li><a href="/backup.db">Backup</a></li>
+        </ul>
+      </div>
+      <div class="main">
+        <slot></slot>
+      </div>
     </div>
-    <div>
-      <slot></slot>
-    </div>
+    <footer>footer</footer>
   </div>
 </template>
 
@@ -27,5 +33,21 @@ export default {
 </script>
 
 <style>
+/* *{
+  margin: 0;
+  padding: 0;
+} */
+</style>
 
+<style scoped>
+.page{
+  width: 1180px;
+  margin: 0 auto;
+}
+.menu{
+  float: left;
+}
+/* .menu>ul{
+  width: 300px;
+} */
 </style>
