@@ -10,10 +10,20 @@ const routes = [
     component: () =>
       import('../pages/home/home.vue')
   }, {
+    name: 'list',
+    path: '/list',
+    component: () =>
+      import('../pages/list/list.vue')
+  }, {
     name: 'editSite',
     path: '/site/edit',
     component: () =>
       import('../pages/editSite/editSite.vue')
+  }, {
+    name: 'editAccount',
+    path: '/account/edit',
+    component: () =>
+      import('../pages/editAccount/editAccount.vue')
   }, {
     name: 'error',
     path: '/error',

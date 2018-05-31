@@ -1,19 +1,12 @@
 <template>
-  <o-layout>
-    <h2>{{message}}</h2>
-  </o-layout>
+  <o-layout></o-layout>
 </template>
 
 <script>
 import oLayout from '../../components/layout/layout';
 
 export default {
-  name: 'home',
-  data() {
-    return {
-      message: 'Hello world!'
-    };
-  },
+  name: 'list',
   components: {
     oLayout
   }
