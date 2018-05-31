@@ -47,7 +47,19 @@ export default {
 .menu{
   float: left;
 }
-/* .menu>ul{
-  width: 300px;
-} */
+.menu>ul{
+  padding: 0;
+}
+.menu>ul>li{
+  display: block;
+}
+.main{
+  margin-left: 100px;
+}
+footer{
+  position: absolute;
+  width: 1180px;
+  bottom: 0;
+  text-align: center;
+}
 </style>
