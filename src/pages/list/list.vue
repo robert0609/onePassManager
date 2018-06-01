@@ -1,9 +1,25 @@
 <template>
   <o-layout>
-    <div>
-      <ul></ul>
+    <div class="site">
+      <ul>
+        <li class="site-item">
+          <div class="new-button" @click="handleNewSite">new site</div>
+        </li>
+        <li v-if="sites.length > 0" class="site-item" v-for="item in sites" :key="item.Id" @click="handleSelectSite(item)">
+          <o-site :value="item"></o-site>
+        </li>
+      </ul>
     </div>
-    <div></div>
+    <div class="account">
+      <ul>
+        <li class="account-item" v-if="siteId > 0">
+          <div class="new-button" @click="handleNewAccount">new account</div>
+        </li>
+        <li v-if="accounts.length > 0" class="account-item" v-for="item in accounts" :key="item.Id">
+          <o-account :value="item"></o-account>
+        </li>
+      </ul>
+    </div>
   </o-layout>
 </template>
 
@@ -19,6 +35,7 @@ export default {
   data() {
     return {
       level: '',
+      siteId: 0,
       sites: [],
       accounts: []
     };
@@ -29,12 +46,26 @@ export default {
     oAccount
   },
   mounted() {
-    if (this.$route.query.level) {
-      this.level = this.$route.query.level;
-      this.loadSites();
-    }
+    this.init(this.$route.query);
+  },
+  beforeRouteUpdate(to, from, next) {
+    this.init(to.query);
+    next();
   },
   methods: {
+    init(query) {
+      if (query.level) {
+        this.level = query.level;
+        this.loadSites();
+      }
+      else {
+        this.$vToast.show({
+          message: 'level is null!'
+        });
+      }
+      this.siteId = 0;
+      this.accounts = [];
+    },
     loadSites() {
       request.getPromise(context.apiUrl('/webapi/site/fetch'), { level: this.level }).then(data => {
         this.sites = data;
@@ -52,11 +83,49 @@ export default {
           message: error.message
         });
       });
+    },
+    handleSelectSite(site) {
+      this.siteId = site.Id;
+      this.loadAccounts(site);
+    },
+    handleNewSite() {
+        this.$router.push({ name: 'editSite', query: { level: this.level } });
+    },
+    handleNewAccount() {
+        this.$router.push({ name: 'editAccount', query: { siteid: this.siteId } });
     }
   }
 };
 </script>
 
 <style scoped>
-
+.site{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 300px;
+}
+.account{
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 700px;
+}
+.site-item{
+  margin-bottom: 5px;
+}
+.account-item{
+  float: left;
+  margin-left: 5px;
+}
+.new-button,.new-button{
+  margin-left: 0;
+  width: 96px;
+  font-size: 14px;
+  line-height: 28px;
+  border: 1px solid #b0a174;
+  color: #b0a174;
+  text-align: center;
+  cursor: pointer;
+}
 </style>

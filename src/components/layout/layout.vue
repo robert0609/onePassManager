@@ -1,14 +1,14 @@
 <template>
   <div class="page">
     <header>
-      <h1>One Passord</h1>
+      <h1>One</h1>
     </header>
     <div class="body">
       <div class="menu">
         <ul>
           <li><router-link :to="{ name: 'home' }">Home</router-link></li>
           <li v-for="lvl in levels" :key="lvl"><router-link :to="{ name: 'list', query: { level: lvl } }">Level-{{lvl}}</router-link></li>
-          <li><a href="/backup.db">Backup</a></li>
+          <li><a :href="backupUrl">Backup</a></li>
         </ul>
       </div>
       <div class="main">
@@ -26,17 +26,20 @@ export default {
   name: 'layout',
   data() {
     return {
-      levels
+      levels,
+      backupUrl: '/backup.db'
     };
   }
 };
 </script>
 
 <style>
-/* *{
-  margin: 0;
+ul{
   padding: 0;
-} */
+}
+ul>li{
+  display: block;
+}
 </style>
 
 <style scoped>
@@ -47,14 +50,9 @@ export default {
 .menu{
   float: left;
 }
-.menu>ul{
-  padding: 0;
-}
-.menu>ul>li{
-  display: block;
-}
 .main{
   margin-left: 100px;
+  position: relative;
 }
 footer{
   position: absolute;

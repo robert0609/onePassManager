@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <o-layout>
     <ul>
       <li>
         <span>username</span>
@@ -8,17 +8,19 @@
       <li>
         <span>password</span>
         <v-input ref="inputPassword" v-model="password" name="password" :rule="'required'" placeholder=""></v-input>
+        <v-button @click="handleSubmit">generate</v-button>
       </li>
     </ul>
     <div>
-      <v-button @click="handleSubmit">提交</v-button>
+      <v-button @click="handleSubmit">submit</v-button>
     </div>
-  </div>
+  </o-layout>
 </template>
 
 <script>
 import { request } from 'v-utility';
 import context from '../../common/context.js';
+import oLayout from '../../components/layout/layout';
 
 export default {
   name: 'editSite',
@@ -29,6 +31,9 @@ export default {
       username: '',
       password: ''
     };
+  },
+  components: {
+    oLayout
   },
   mounted() {
     if (this.$route.query.id) {
