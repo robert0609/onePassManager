@@ -1,5 +1,5 @@
 <template>
-  <o-layout>
+  <o-layout @pageload="handleLoad">
     <div class="site">
       <div class="new-container">
         <div class="new-button" @click="handleNewSite">new site</div>
@@ -45,15 +45,12 @@ export default {
     oSite,
     oAccount
   },
-  mounted() {
-    this.init(this.$route.query);
-  },
   beforeRouteUpdate(to, from, next) {
-    this.init(to.query);
+    this.handleLoad(to.query);
     next();
   },
   methods: {
-    init(query) {
+    handleLoad(query) {
       if (query.level) {
         this.level = query.level;
         this.loadSites();

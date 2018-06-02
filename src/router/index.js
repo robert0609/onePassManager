@@ -10,6 +10,11 @@ const routes = [
     component: () =>
       import('../pages/home/home.vue')
   }, {
+    name: 'unlock',
+    path: '/unlock',
+    component: () =>
+      import('../pages/unlock/unlock.vue')
+  }, {
     name: 'list',
     path: '/list',
     component: () =>

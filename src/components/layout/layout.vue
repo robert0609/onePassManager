@@ -20,7 +20,10 @@
 </template>
 
 <script>
-const levels = [1, 2, 3];
+import { request, browser } from 'v-utility';
+import context from '../../common/context.js';
+
+const levels = ['1', '2', '3'];
 
 export default {
   name: 'layout',
@@ -29,17 +32,31 @@ export default {
       levels,
       backupUrl: '/backup.db'
     };
+  },
+  mounted() {
+    this.init(this.$route.query);
+  },
+  methods: {
+    init(query) {
+      request.getPromise(context.apiUrl('/login')).then(() => {
+        this.$emit('pageload', query);
+      }).catch(error => {
+        if (error.errorCode === 1) {
+          this.$router.load(browser.location.addParameter({ source: location.href }, '/unlock'), { replace: true });
+        }
+        else {
+          this.$vToast.show({
+            message: error.message
+          });
+        }
+      });
+    }
   }
 };
 </script>
 
-<style>
-ul{
-  padding: 0;
-}
-ul>li{
-  display: block;
-}
+<style src="../../common/common.css">
+
 </style>
 
 <style scoped>

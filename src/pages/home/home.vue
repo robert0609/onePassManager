@@ -44,9 +44,6 @@ export default {
     oSite,
     oAccount
   },
-  mounted() {
-
-  },
   methods: {
     handleSearch() {
       this.checkInput().catch(error => {

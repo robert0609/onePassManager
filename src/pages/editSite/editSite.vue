@@ -1,5 +1,5 @@
 <template>
-  <o-layout>
+  <o-layout @pageload="handleLoad">
     <ul>
       <li>
         <div>Website name</div>
@@ -38,32 +38,32 @@ export default {
   components: {
     oLayout
   },
-  mounted() {
-    if (this.$route.query.id) {
-      this.id = Number(this.$route.query.id);
-      request.getPromise(context.apiUrl('/webapi/site/fetch'), { id: this.id }).then(data => {
-        if (data.length === 0) {
-          this.$vToast.show({
-            message: `不存在id为${this.id}的网站信息`
-          });
-        }
-        else {
-          let site = data[0];
-          this.name = site.Name;
-          this.url = site.Url;
-          this.level = site.Level;
-        }
-      }).catch(error => {
-        this.$vToast.show({
-          message: error.message
-        });
-      });
-    }
-    if (this.$route.query.level) {
-      this.level = this.$route.query.level;
-    }
-  },
   methods: {
+    handleLoad() {
+      if (this.$route.query.id) {
+        this.id = Number(this.$route.query.id);
+        request.getPromise(context.apiUrl('/webapi/site/fetch'), { id: this.id }).then(data => {
+          if (data.length === 0) {
+            this.$vToast.show({
+              message: `不存在id为${this.id}的网站信息`
+            });
+          }
+          else {
+            let site = data[0];
+            this.name = site.Name;
+            this.url = site.Url;
+            this.level = site.Level.toString();
+          }
+        }).catch(error => {
+          this.$vToast.show({
+            message: error.message
+          });
+        });
+      }
+      if (this.$route.query.level) {
+        this.level = this.$route.query.level;
+      }
+    },
     handleSubmit(e) {
       this.checkInput().catch(error => {
         return Promise.reject();

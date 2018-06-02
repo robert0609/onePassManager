@@ -1,5 +1,5 @@
 <template>
-  <o-layout>
+  <o-layout @pageload="handleLoad">
     <ul>
       <li>
         <div>username</div>
@@ -46,37 +46,37 @@ export default {
   components: {
     oLayout
   },
-  mounted() {
-    if (this.$route.query.id) {
-      this.id = Number(this.$route.query.id);
-      request.getPromise(context.apiUrl('/webapi/account/fetch'), { id: this.id }).then(data => {
-        if (data.length === 0) {
-          this.$vToast.show({
-            message: `不存在id为${this.id}的账号信息`
-          });
-        }
-        else {
-          let account = data[0];
-          this.siteId = account.SiteId;
-          this.username = account.UserName;
-          this.password = account.Password;
-        }
-      }).catch(error => {
-        this.$vToast.show({
-          message: error.message
-        });
-      });
-    }
-    else if (this.$route.query.siteid) {
-      this.siteId = Number(this.$route.query.siteid);
-    }
-    else {
-      this.$vToast.show({
-        message: 'siteId can not be zero!'
-      });
-    }
-  },
   methods: {
+    handleLoad() {
+      if (this.$route.query.id) {
+        this.id = Number(this.$route.query.id);
+        request.getPromise(context.apiUrl('/webapi/account/fetch'), { id: this.id }).then(data => {
+          if (data.length === 0) {
+            this.$vToast.show({
+              message: `不存在id为${this.id}的账号信息`
+            });
+          }
+          else {
+            let account = data[0];
+            this.siteId = account.SiteId;
+            this.username = account.UserName;
+            this.password = account.Password;
+          }
+        }).catch(error => {
+          this.$vToast.show({
+            message: error.message
+          });
+        });
+      }
+      else if (this.$route.query.siteid) {
+        this.siteId = Number(this.$route.query.siteid);
+      }
+      else {
+        this.$vToast.show({
+          message: 'siteId can not be zero!'
+        });
+      }
+    },
     handleGenerate(e) {
       this.password = randomPassword(10);
     },

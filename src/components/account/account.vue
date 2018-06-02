@@ -3,19 +3,57 @@
     <div>{{value.UserName}}</div>
     <div class="operation">
       <div class="button" @click="handleEdit">edit</div>
-      <div class="button" @click="handleCopy">copy</div>
+      <div class="button" :class="{ [copyButtonClass]: true }" @click="handleCopy">copy</div>
     </div>
   </div>
 </template>
 
 <script>
+import ClipboardJS from 'clipboard';
+
 export default {
   name: 'account',
+  data() {
+    return {
+      copyHandler: null
+    };
+  },
   props: {
     value: {
       type: Object,
       default: () => null
     }
+  },
+  computed: {
+    copyButtonClass() {
+      return `copy-password-${this.value.Id}`;
+    }
+  },
+  mounted() {
+    this.copyHandler = new ClipboardJS(`.${this.copyButtonClass}`, {
+      text: () => {
+        return this.value.Password;
+      }
+    });
+    this.copyHandler.on('success', (e) => {
+      console.info('Action:', e.action);
+      console.info('Text:', e.text);
+      console.info('Trigger:', e.trigger);
+
+      this.$vToast.show({
+        message: 'copied successfully!'
+      });
+
+      e.clearSelection();
+    });
+
+    this.copyHandler.on('error', function(e) {
+      console.error('Action:', e.action);
+      console.error('Trigger:', e.trigger);
+    });
+  },
+  beforeDestroy() {
+    this.copyHandler.destroy();
   },
   methods: {
     handleEdit() {
