@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h4 class="title">{{value.Name}}</h4>
-    <a href="value.Url" target="_blank">{{value.Url}}</a>
+    <a :href="value.Url" target="_blank">{{value.Url}}</a>
     <div class="button" @click.stop="handleEdit">edit</div>
   </div>
 </template>
@@ -29,7 +29,8 @@ export default {
 .container{
   position: relative;
   width: 100%;
-  border:1px solid;
+  color: #fff;
+  background: #67babb;
   padding: 5px;
 }
 .title{
@@ -44,8 +45,13 @@ export default {
   font-size: 14px;
   line-height: 28px;
   border: 1px solid #b0a174;
-  color: #b0a174;
+  background: #b0a174;
+  color: #fff;
   text-align: center;
   cursor: pointer;
+}
+.button:hover{
+  border-color: #d8c790;
+  background: #d8c790;
 }
 </style>

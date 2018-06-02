@@ -19,7 +19,8 @@ rm(path.resolve(__dirname, '../dist'), function (err) {
 	var app = express();
   // proxy webapi request to mobile
   app.use('/webapi', proxyMiddleware('/webapi', {
-    target: 'http://192.168.10.96:18888',
+    // target: 'http://192.168.10.96:18888',
+    target: 'http://192.168.1.107:18888',
     changeOrigin: true
   }));
   // handle fallback for HTML5 history API

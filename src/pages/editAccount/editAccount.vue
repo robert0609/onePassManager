@@ -2,17 +2,17 @@
   <o-layout>
     <ul>
       <li>
-        <span>username</span>
-        <v-input ref="inputUsername" v-model="username" name="username" :rule="'required|max:50'" placeholder=""></v-input>
+        <div>username</div>
+        <v-input class="input" ref="inputUsername" v-model="username" name="username" :rule="'required|max:50'" placeholder=""></v-input>
       </li>
       <li>
-        <span>password</span>
-        <v-input ref="inputPassword" v-model="password" name="password" :rule="'required'" placeholder=""></v-input>
-        <v-button @click="handleSubmit">generate</v-button>
+        <div>password</div>
+        <v-input class="input" ref="inputPassword" v-model="password" name="password" :rule="'required'" placeholder=""></v-input>
       </li>
     </ul>
     <div>
-      <v-button @click="handleSubmit">submit</v-button>
+      <v-button class="button" @click="handleGenerate">generate</v-button>
+      <v-button class="button" @click="handleSubmit">submit</v-button>
     </div>
   </o-layout>
 </template>
@@ -21,6 +21,17 @@
 import { request } from 'v-utility';
 import context from '../../common/context.js';
 import oLayout from '../../components/layout/layout';
+
+const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#'.split('');
+function randomPassword(n) {
+  let result = [];
+  let max = chars.length;
+  for (let i = 0; i < n; ++i) {
+    let idx = Math.floor((Math.random()*max));
+    result.push(chars[idx]);
+  }
+  return result.join('');
+}
 
 export default {
   name: 'editSite',
@@ -66,6 +77,9 @@ export default {
     }
   },
   methods: {
+    handleGenerate(e) {
+      this.password = randomPassword(10);
+    },
     handleSubmit(e) {
       this.checkInput().catch(error => {
         return Promise.reject();
@@ -88,7 +102,7 @@ export default {
           })
         });
       }).then(data => {
-        console.log(data);
+        this.$router.back();
       }).catch(error => {
         if (!error) {
           return;
@@ -107,5 +121,26 @@ export default {
 </script>
 
 <style scoped>
-
+ul>li{
+  position: relative;
+  height: 60px;
+}
+ul>li>div{
+  position: absolute;
+  width: 120px;
+  height: 100%;
+  text-align: center;
+  line-height: 36px;
+}
+ul>li>.input{
+  position: absolute;
+  top: 0;
+  left: 130px;
+  width: 500px;
+}
+.button{
+  float: left;
+  margin-left: 10px;
+  width: 128px;
+}
 </style>

@@ -2,20 +2,20 @@
   <o-layout>
     <ul>
       <li>
-        <span>Website name</span>
-        <v-input ref="inputName" v-model="name" name="Website name" :rule="'required|max:50'" placeholder=""></v-input>
+        <div>Website name</div>
+        <v-input class="input" ref="inputName" v-model="name" name="Website name" :rule="'required|max:50'" placeholder=""></v-input>
       </li>
       <li>
-        <span>Website url</span>
-        <v-input ref="inputUrl" v-model="url" name="Website url" :rule="'required|max:100|url:true'" placeholder=""></v-input>
+        <div>Website url</div>
+        <v-input class="input" ref="inputUrl" v-model="url" name="Website url" :rule="'required|max:100|url:true'" placeholder=""></v-input>
       </li>
       <li>
-        <span>Level</span>
-        <v-input ref="inputLevel" v-model="level" name="Level" :rule="'required|in:1,2,3'" placeholder=""></v-input>
+        <div>Level</div>
+        <v-input class="input" ref="inputLevel" v-model="level" name="Level" :rule="'required|in:1,2,3'" placeholder=""></v-input>
       </li>
     </ul>
     <div>
-      <v-button @click="handleSubmit">submit</v-button>
+      <v-button class="button" @click="handleSubmit">submit</v-button>
     </div>
   </o-layout>
 </template>
@@ -77,7 +77,7 @@ export default {
           })
         });
       }).then(data => {
-        console.log(data);
+        this.$router.back();
       }).catch(error => {
         if (!error) {
           return;
@@ -97,5 +97,24 @@ export default {
 </script>
 
 <style scoped>
-
+ul>li{
+  position: relative;
+  height: 60px;
+}
+ul>li>div{
+  position: relative;
+  width: 120px;
+  height: 100%;
+  text-align: center;
+  line-height: 36px;
+}
+ul>li>.input{
+  position: absolute;
+  top: 0;
+  left: 130px;
+  width: 500px;
+}
+.button{
+  width: 128px;
+}
 </style>

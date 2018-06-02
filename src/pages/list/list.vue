@@ -1,20 +1,20 @@
 <template>
   <o-layout>
     <div class="site">
+      <div class="new-container">
+        <div class="new-button" @click="handleNewSite">new site</div>
+      </div>
       <ul>
-        <li class="site-item">
-          <div class="new-button" @click="handleNewSite">new site</div>
-        </li>
         <li v-if="sites.length > 0" class="site-item" v-for="item in sites" :key="item.Id" @click="handleSelectSite(item)">
           <o-site :value="item"></o-site>
         </li>
       </ul>
     </div>
     <div class="account">
+      <div class="new-container" v-if="siteId > 0">
+        <div class="new-button" @click="handleNewAccount">new account</div>
+      </div>
       <ul>
-        <li class="account-item" v-if="siteId > 0">
-          <div class="new-button" @click="handleNewAccount">new account</div>
-        </li>
         <li v-if="accounts.length > 0" class="account-item" v-for="item in accounts" :key="item.Id">
           <o-account :value="item"></o-account>
         </li>
@@ -111,14 +111,17 @@ export default {
   top: 0;
   width: 700px;
 }
+.new-container{
+
+}
 .site-item{
   margin-bottom: 5px;
 }
 .account-item{
   float: left;
-  margin-left: 5px;
+  margin-right: 5px;
 }
-.new-button,.new-button{
+.new-button{
   margin-left: 0;
   width: 96px;
   font-size: 14px;

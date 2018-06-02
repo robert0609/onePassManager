@@ -34,7 +34,7 @@ export default {
   name: 'home',
   data() {
     return {
-      keyword: '金',
+      keyword: '',
       sites: [],
       accounts: []
     };

@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <header>
-      <h1>One</h1>
+      <h1>One Password</h1>
     </header>
     <div class="body">
       <div class="menu">
@@ -49,6 +49,12 @@ ul>li{
 }
 .menu{
   float: left;
+}
+.menu>ul{
+  margin: 0;
+}
+.menu>ul>li{
+  margin-bottom: 5px;
 }
 .main{
   margin-left: 100px;

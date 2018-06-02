@@ -33,7 +33,8 @@ export default {
 <style scoped>
 .container{
   width: 200px;
-  border:1px solid;
+  color: #fff;
+  background: #67babb;
   padding: 5px;
 }
 .operation{
@@ -47,8 +48,13 @@ export default {
   font-size: 14px;
   line-height: 28px;
   border: 1px solid #b0a174;
-  color: #b0a174;
+  background: #b0a174;
+  color: #fff;
   text-align: center;
   cursor: pointer;
+}
+.button:hover{
+  border-color: #d8c790;
+  background: #d8c790;
 }
 </style>
