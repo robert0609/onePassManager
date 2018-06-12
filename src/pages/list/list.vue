@@ -65,7 +65,7 @@ export default {
     },
     loadSites() {
       request.getPromise(context.apiUrl('/webapi/site/fetch'), { level: this.level }).then(data => {
-        this.sites = data;
+        this.sites = data.sort((a, b) => b.Id - a.Id);
       }).catch(error => {
         this.$vToast.show({
           message: error.message
