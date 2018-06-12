@@ -1,6 +1,6 @@
 {
   "name": "one-pass",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "Web UI to manage onePass",
   "private": true,
   "scripts": {
