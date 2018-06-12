@@ -53,7 +53,7 @@ export default {
         request.getPromise(context.apiUrl('/webapi/account/fetch'), { id: this.id }).then(data => {
           if (data.length === 0) {
             this.$vToast.show({
-              message: `不存在id为${this.id}的账号信息`
+              message: `there is not any account that id is ${this.id}!`
             });
           }
           else {

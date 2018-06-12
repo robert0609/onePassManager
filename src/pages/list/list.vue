@@ -6,7 +6,7 @@
       </div>
       <ul>
         <li v-if="sites.length > 0" class="site-item" v-for="item in sites" :key="item.Id" @click="handleSelectSite(item)">
-          <o-site :value="item"></o-site>
+          <o-site :value="item" :active="item.Id === siteId"></o-site>
         </li>
       </ul>
     </div>
@@ -100,13 +100,13 @@ export default {
   position: absolute;
   left: 0;
   top: 0;
-  width: 300px;
+  width: 400px;
 }
 .account{
   position: absolute;
   right: 0;
   top: 0;
-  width: 700px;
+  width: 600px;
 }
 .new-container{
 

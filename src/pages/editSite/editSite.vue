@@ -7,7 +7,7 @@
       </li>
       <li>
         <div>Website url</div>
-        <v-input class="input" ref="inputUrl" v-model="url" name="Website url" :rule="'required|max:100|url:true'" placeholder=""></v-input>
+        <v-input class="input" ref="inputUrl" v-model="url" name="Website url" :rule="'max:100|url:true'" placeholder=""></v-input>
       </li>
       <li>
         <div>Level</div>
@@ -24,6 +24,8 @@
 import { request } from 'v-utility';
 import context from '../../common/context.js';
 import oLayout from '../../components/layout/layout';
+
+const noUrl = 'none';
 
 export default {
   name: 'editSite',
@@ -45,13 +47,13 @@ export default {
         request.getPromise(context.apiUrl('/webapi/site/fetch'), { id: this.id }).then(data => {
           if (data.length === 0) {
             this.$vToast.show({
-              message: `不存在id为${this.id}的网站信息`
+              message: `there is not any site that id is ${this.id}!`
             });
           }
           else {
             let site = data[0];
             this.name = site.Name;
-            this.url = site.Url;
+            this.url = site.Url === noUrl ? '' : site.Url;
             this.level = site.Level.toString();
           }
         }).catch(error => {
@@ -72,7 +74,7 @@ export default {
           site: JSON.stringify({
             Id: this.id,
             Name: encodeURIComponent(this.name),
-            Url: this.url,
+            Url: this.url ? this.url : noUrl,
             Level: this.level
           })
         });

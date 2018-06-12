@@ -1,18 +1,29 @@
 <template>
-  <div class="container">
+  <div class="container" :class="{ 'active': active }">
     <h4 class="title">{{value.Name}}</h4>
-    <a :href="value.Url" target="_blank">{{value.Url}}</a>
+    <a v-if="isUrl" :href="value.Url" target="_blank">{{value.Url}}</a>
     <div class="button" @click.stop="handleEdit">edit</div>
   </div>
 </template>
 
 <script>
+const noUrl = 'none';
+
 export default {
   name: 'site',
   props: {
     value: {
       type: Object,
       default: () => null
+    },
+    active: {
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
+    isUrl() {
+      return this.value.Url !== noUrl;
     }
   },
   methods: {
@@ -29,9 +40,14 @@ export default {
 .container{
   position: relative;
   width: 100%;
+  height: 40px;
   color: #fff;
   background: #67babb;
+  border: 3px solid #ffffff;
   padding: 5px;
+}
+.container.active{
+  border: 3px solid #d8c790;
 }
 .title{
   margin: 0;
