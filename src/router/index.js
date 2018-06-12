@@ -30,6 +30,11 @@ const routes = [
     component: () =>
       import('../pages/editAccount/editAccount.vue')
   }, {
+    name: 'restore',
+    path: '/restore',
+    component: () =>
+      import('../pages/restore/restore.vue')
+  }, {
     name: 'error',
     path: '/error',
     component: () =>

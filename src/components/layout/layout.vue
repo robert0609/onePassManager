@@ -9,6 +9,7 @@
           <li><router-link :to="{ name: 'home' }">Home</router-link></li>
           <li v-for="lvl in levels" :key="lvl"><router-link :to="{ name: 'list', query: { level: lvl } }">Level-{{lvl}}</router-link></li>
           <li><a :href="backupUrl">Backup</a></li>
+          <li><router-link :to="{ name: 'restore' }">Restore</router-link></li>
         </ul>
       </div>
       <div class="main">
@@ -30,7 +31,7 @@ export default {
   data() {
     return {
       levels,
-      backupUrl: '/backup.db'
+      backupUrl: '/backup'
     };
   },
   mounted() {
