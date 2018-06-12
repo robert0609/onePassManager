@@ -16,7 +16,7 @@
         <slot></slot>
       </div>
     </div>
-    <footer>footer</footer>
+    <footer></footer>
   </div>
 </template>
 
