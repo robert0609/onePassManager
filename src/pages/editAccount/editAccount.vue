@@ -2,16 +2,16 @@
   <o-layout @pageload="handleLoad">
     <ul>
       <li>
-        <div>username</div>
+        <div class="title">username</div>
         <v-input class="input" ref="inputUsername" v-model="username" name="username" :rule="'required|max:50'" placeholder=""></v-input>
       </li>
       <li>
-        <div>password</div>
+        <div class="title">password</div>
         <v-input class="input" ref="inputPassword" v-model="password" name="password" :rule="'required'" placeholder=""></v-input>
+        <v-button class="generate_button" @click="handleGenerate">generate</v-button>
       </li>
     </ul>
     <div>
-      <v-button class="button" @click="handleGenerate">generate</v-button>
       <v-button class="button" @click="handleSubmit">submit</v-button>
     </div>
   </o-layout>
@@ -125,7 +125,7 @@ ul>li{
   position: relative;
   height: 60px;
 }
-ul>li>div{
+ul>li>.title{
   position: absolute;
   width: 120px;
   height: 100%;
@@ -137,6 +137,13 @@ ul>li>.input{
   top: 0;
   left: 130px;
   width: 500px;
+}
+ul>li>.generate_button{
+  position: absolute;
+  top: 0;
+  left: 630px;
+  margin-left: 10px;
+  width: 128px;
 }
 .button{
   float: left;

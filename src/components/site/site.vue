@@ -51,10 +51,11 @@ export default {
 }
 .title{
   margin: 0;
+  height: 24px;
 }
 .button{
   position: absolute;
-  top: 5px;
+  top: 10px;
   right: 5px;
   margin-left: 10px;
   width: 96px;

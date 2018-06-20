@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div>{{value.UserName}}</div>
+    <div class="username">{{value.UserName}}</div>
     <div class="operation">
       <div class="button" @click="handleEdit">edit</div>
       <div class="button" :class="{ [copyButtonClass]: true }" @click="handleCopy">copy</div>
@@ -75,6 +75,9 @@ export default {
   background: #67babb;
   padding: 5px;
 }
+.username{
+  height: 24px;
+}
 .operation{
   position: relative;
   height: 40px;
@@ -82,7 +85,7 @@ export default {
 }
 .button{
   margin: 6px;
-  width: 50px;
+  width: 96px;
   font-size: 14px;
   line-height: 28px;
   border: 1px solid #b0a174;
