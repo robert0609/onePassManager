@@ -8,7 +8,7 @@
       <div class="site">
         <ul>
           <li class="site-item" v-for="item in sites" :key="item.Id" @click="handleSelectSite(item)">
-            <o-site :value="item"></o-site>
+            <o-site :value="item"  :active="item.Id === siteId"></o-site>
           </li>
         </ul>
       </div>
@@ -35,6 +35,7 @@ export default {
   data() {
     return {
       keyword: '',
+      siteId: 0,
       sites: [],
       accounts: []
     };
@@ -45,7 +46,13 @@ export default {
     oAccount
   },
   methods: {
+    init() {
+      this.siteId = 0;
+      this.sites = [];
+      this.accounts = [];
+    },
     handleSearch() {
+      this.init();
       this.checkInput().catch(error => {
         return Promise.reject();
       }).then(() => {
@@ -68,6 +75,7 @@ export default {
       await this.$refs.inputKeyword.getValidResult();
     },
     handleSelectSite(site) {
+      this.siteId = site.Id;
       this.accounts = site.AccountList;
     }
   }
