@@ -1,7 +1,7 @@
 <template>
   <o-layout>
     <div class="search">
-      <v-input class="keyword-input" ref="inputKeyword" v-model="keyword" name="keyword" :rule="'required'" placeholder=""></v-input>
+      <v-input class="keyword-input" ref="inputKeyword" v-model="keyword" name="keyword" :rule="'required'" placeholder="" @keyup.native.enter="handleSearch"></v-input>
       <v-button class="keyword-button" @click="handleSearch">search</v-button>
     </div>
     <div class="result">

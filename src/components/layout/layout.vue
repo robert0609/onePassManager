@@ -1,7 +1,8 @@
 <template>
   <div class="page">
     <header>
-      <h1>One Password</h1>
+      <img class="logo" src="../../static/logo.png">
+      <h1 class="title">One Password</h1>
     </header>
     <div class="body">
       <div class="menu">
@@ -64,6 +65,15 @@ export default {
 .page{
   width: 1180px;
   margin: 0 auto;
+}
+header .logo{
+  width: 50px;
+  height: 50px;
+  float: left;
+}
+header .title{
+  margin-left: 100px;
+  padding-top: 6px;
 }
 .menu{
   float: left;

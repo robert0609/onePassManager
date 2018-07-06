@@ -1,9 +1,12 @@
 <template>
   <div class="unlock-container">
+    <div class="logo-container">
+      <img class="logo" src="../../static/logo.png">
+    </div>
     <ul>
       <li>
         <div class="unlock-key-title">unlock key</div>
-        <v-input class="unlock-key-input" ref="inputKey" v-model="key" name="unlock key" :rule="'required|max:20'" placeholder=""></v-input>
+        <v-input class="unlock-key-input" ref="inputKey" v-model="key" name="unlock key" :rule="'required|max:20'" placeholder="" @keyup.native.enter="handleSubmit"></v-input>
       </li>
     </ul>
     <div>
@@ -61,6 +64,13 @@ export default {
 .unlock-container{
   width: 600px;
   margin: 0 auto;
+}
+.unlock-container .logo-container{
+  text-align: center;
+}
+.unlock-container .logo-container .logo{
+  width: 50px;
+  height: 50px;
 }
 ul>li{
   position: relative;
