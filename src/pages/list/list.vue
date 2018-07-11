@@ -4,11 +4,13 @@
       <div class="new-container">
         <div class="new-button" @click="handleNewSite">new site</div>
       </div>
-      <ul>
-        <li v-if="sites.length > 0" class="site-item" v-for="item in sites" :key="item.Id" @click="handleSelectSite(item)">
-          <o-site :value="item" :active="item.Id === siteId"></o-site>
-        </li>
-      </ul>
+      <div class="list-container">
+        <ul>
+          <li v-if="sites.length > 0" class="site-item" v-for="item in sites" :key="item.Id" @click="handleSelectSite(item)">
+            <o-site :value="item" :active="item.Id === siteId"></o-site>
+          </li>
+        </ul>
+      </div>
     </div>
     <div class="account">
       <div class="new-container" v-if="siteId > 0">
@@ -100,7 +102,6 @@ export default {
   position: absolute;
   left: 0;
   top: 0;
-  width: 400px;
 }
 .account{
   position: absolute;
@@ -110,6 +111,15 @@ export default {
 }
 .new-container{
 
+}
+.site>.list-container{
+  margin-top: 5px;
+  width: 440px;
+  height: 810px;
+  overflow-y: auto;
+}
+.site>.list-container>ul{
+  width: 400px;
 }
 .site-item{
   margin-bottom: 5px;

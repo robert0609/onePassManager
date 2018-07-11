@@ -90,13 +90,18 @@ export default {
   position: absolute;
   left: 0;
   top: 0;
-  width: 300px;
+  width: 440px;
+  height: 810px;
+  overflow-y: auto;
+}
+.site>ul{
+  width: 400px;
 }
 .account{
   position: absolute;
   right: 0;
   top: 0;
-  width: 700px;
+  width: 600px;
 }
 .site-item{
   margin-bottom: 5px;
