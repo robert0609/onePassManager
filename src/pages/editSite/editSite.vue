@@ -11,7 +11,7 @@
       </li>
       <li>
         <div>Level</div>
-        <v-input class="input" ref="inputLevel" v-model="level" name="Level" :rule="'required|in:1,2,3'" placeholder=""></v-input>
+        <v-input class="input" ref="inputLevel" v-model="level" name="Level" :rule="'required|included:1,2,3'" placeholder=""></v-input>
       </li>
     </ul>
     <div>

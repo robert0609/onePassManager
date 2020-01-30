@@ -19,12 +19,12 @@ rm(path.resolve(__dirname, '../dist'), function (err) {
 	var app = express();
   // proxy webapi request to mobile
   app.use('/webapi', proxyMiddleware('/webapi', {
-    target: 'http://192.168.10.90:18888',
+    target: 'http://192.168.1.6:18888',
     // target: 'http://192.168.1.107:18888',
     changeOrigin: true
   }));
   app.use('/login', proxyMiddleware('/login', {
-    target: 'http://192.168.10.90:18888',
+    target: 'http://192.168.1.6:18888',
     // target: 'http://192.168.1.107:18888',
     changeOrigin: true
   }));
