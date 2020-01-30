@@ -72,8 +72,8 @@
   "dependencies": {
     "babel-polyfill": "^6.23.0",
     "clipboard": "^2.0.1",
-    "v-pc-ui": "^0.2.66",
-    "v-utility": "^0.6.19",
+    "v-pc-ui": "github:robert0609/v-pc-ui",
+    "v-utility": "github:robert0609/v-utility",
     "vee-validate": "^2.0.9",
     "vue": "^2.4.2",
     "vue-router": "^3.0.1"
