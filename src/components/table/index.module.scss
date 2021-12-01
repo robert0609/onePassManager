@@ -1,0 +1,17 @@
+.el-table .table {
+  &__header {
+    border-bottom: 1px solid $color-border-primary;
+    height: 50px;
+
+    &__cell {
+      background-color: #e7e7e7;
+      color: #262626;
+    }
+  }
+}
+
+.pagination {
+  margin-top: $line-spacing;
+  display: flex;
+  justify-content: center;
+}

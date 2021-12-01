@@ -1,6 +1,6 @@
-# onePass
+# onePassManager2
 
-> Web UI to manage onePass
+> onePass manager web portal
 
 ## Build Setup
 
@@ -8,9 +8,9 @@
 # install dependencies
 npm install
 
-# serve development program
+# start development server for debug
 npm run dev
 
-# build for production
-npm run prod
+# build in production
+npm run build
 ```
