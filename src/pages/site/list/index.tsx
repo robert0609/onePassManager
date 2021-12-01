@@ -98,6 +98,7 @@ export default defineComponent({
             }}
           >
             <ElTableColumn prop="id" label="应用编号"></ElTableColumn>
+            <ElTableColumn prop="level" label="应用级别"></ElTableColumn>
             <ElTableColumn prop="name" label="应用名称"></ElTableColumn>
             <ElTableColumn
               label="应用地址"
@@ -129,7 +130,7 @@ export default defineComponent({
                       href="javascript:void(0);"
                       onClick={() => onClickAccountList(row)}
                     >
-                      帐号列表
+                      账号列表
                     </ElLink>
                   </>
                 )

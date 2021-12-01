@@ -26,8 +26,17 @@ export default defineComponent({
         });
     }
 
+    function onClickEnter(e: KeyboardEvent) {
+      if (e.key === 'Enter') {
+        onClickLogin();
+      }
+    }
+
     return () => (
-      <div class="flex justify-center items-center h-screen">
+      <div
+        class="flex justify-center items-center h-screen"
+        onKeyup={onClickEnter}
+      >
         <div class="p-10 rounded-md shadow-md border-2">
           <p class="flex gap-2 justify-center items-center mb-2">
             <ElImage src={logoImage} class="w-9 h-9"></ElImage>

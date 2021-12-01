@@ -65,7 +65,7 @@ const LayoutMain: FunctionalComponent = function (props, { slots }) {
                         <ElIcon>
                           <ElIconKey />
                         </ElIcon>
-                        <span>帐号列表</span>
+                        <span>应用列表</span>
                       </>
                     )
                   }}
@@ -73,19 +73,19 @@ const LayoutMain: FunctionalComponent = function (props, { slots }) {
                   <ElMenuItem
                     index="/site/list?level=1"
                     v-slots={{
-                      title: () => <>一级账号</>
+                      title: () => <>一级应用</>
                     }}
                   ></ElMenuItem>
                   <ElMenuItem
                     index="/site/list?level=2"
                     v-slots={{
-                      title: () => <>二级账号</>
+                      title: () => <>二级应用</>
                     }}
                   ></ElMenuItem>
                   <ElMenuItem
                     index="/site/list?level=3"
                     v-slots={{
-                      title: () => <>三级账号</>
+                      title: () => <>三级应用</>
                     }}
                   ></ElMenuItem>
                 </ElSubMenu>

@@ -54,11 +54,11 @@ export default defineConfig({
   server: {
     proxy: {
       '/webapi': {
-        target: 'http://192.168.31.222:18888',
+        target: 'http://192.168.1.4:18888',
         changeOrigin: true
       },
       '/login': {
-        target: 'http://192.168.31.222:18888',
+        target: 'http://192.168.1.4:18888',
         changeOrigin: true
       }
     }

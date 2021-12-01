@@ -59,7 +59,7 @@ export default defineComponent({
               type="primary"
               onClick={() => onClickEditAccount()}
             >
-              新增帐号
+              新增账号
             </ElButton>
           </div>
           <div id="account-list" class="flex gap-4 flex-wrap">
