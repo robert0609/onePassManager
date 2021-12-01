@@ -1,6 +1,6 @@
 import { defineComponent, ref, onMounted } from 'vue';
 import { accountController } from '@/core/business/account';
-import { ElMessage } from 'element-plus';
+import { ElLoading, ElMessage, ILoadingInstance } from 'element-plus';
 
 const chars =
   '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#'.split('');
@@ -31,6 +31,7 @@ export default defineComponent({
     const { account, fetchAccount, updateAccount } = accountController();
     const submitLoading = ref<boolean>(false);
     const refForm = ref<typeof ElForm | null>(null);
+    let loadingInstance: ILoadingInstance | undefined;
 
     const formRules = {
       userName: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
@@ -68,9 +69,18 @@ export default defineComponent({
       account.siteId = props.siteId;
 
       if (account.id > 0) {
-        fetchAccount().catch((e) => {
-          ElMessage.error(e.message);
+        loadingInstance = ElLoading.service({
+          target: '#edit-form'
         });
+        fetchAccount()
+          .catch((e) => {
+            ElMessage.error(e.message);
+          })
+          .finally(() => {
+            if (loadingInstance) {
+              loadingInstance.close();
+            }
+          });
       }
     });
 
@@ -85,6 +95,9 @@ export default defineComponent({
         rules={formRules}
         labelPosition="right"
         labelWidth="90px"
+        {...{
+          id: 'edit-form'
+        }}
       >
         <ElFormItem label="用户名" prop="userName">
           <ElInput

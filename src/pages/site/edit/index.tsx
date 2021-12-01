@@ -1,6 +1,6 @@
 import { defineComponent, ref, onMounted } from 'vue';
 import { siteController } from '@/core/business/site';
-import { ElMessage } from 'element-plus';
+import { ElLoading, ElMessage, ILoadingInstance } from 'element-plus';
 
 export default defineComponent({
   name: 'SiteEdit',
@@ -19,6 +19,7 @@ export default defineComponent({
     const { site, fetchSite, updateSite } = siteController();
     const submitLoading = ref<boolean>(false);
     const refForm = ref<typeof ElForm | null>(null);
+    let loadingInstance: ILoadingInstance | undefined;
 
     const formRules = {
       name: [{ required: true, message: '请输入应用名称', trigger: 'blur' }]
@@ -55,9 +56,18 @@ export default defineComponent({
       site.level = props.level;
 
       if (site.id > 0) {
-        fetchSite().catch((e) => {
-          ElMessage.error(e.message);
+        loadingInstance = ElLoading.service({
+          target: '#edit-form'
         });
+        fetchSite()
+          .catch((e) => {
+            ElMessage.error(e.message);
+          })
+          .finally(() => {
+            if (loadingInstance) {
+              loadingInstance.close();
+            }
+          });
       }
     });
 
@@ -68,6 +78,9 @@ export default defineComponent({
         rules={formRules}
         labelPosition="right"
         labelWidth="90px"
+        {...{
+          id: 'edit-form'
+        }}
       >
         <ElFormItem label="应用名称" prop="name">
           <ElInput
