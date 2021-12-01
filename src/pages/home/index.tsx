@@ -3,7 +3,7 @@ import LayoutMain from '@/components/layoutMain';
 import OneTable from '@/components/table';
 import { siteListController } from '@/core/business/site';
 import { ElMessage, ElLoading, ILoadingInstance } from 'element-plus';
-import { useRoute, useRouter } from 'vue-router';
+import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router';
 import { Site } from '@/api';
 import SiteEdit from '@/pages/site/edit';
 import { isStringEmpty } from 'roy-type-assert';
@@ -34,6 +34,15 @@ export default defineComponent({
         return;
       }
       loadSiteList();
+    });
+
+    onBeforeRouteUpdate((to, from, next) => {
+      keyword.value = to.query.keyword as string;
+      if (isStringEmpty(keyword.value)) {
+        return;
+      }
+      loadSiteList();
+      next();
     });
 
     function loadSiteList() {
